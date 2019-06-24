@@ -72,7 +72,7 @@
         <splash height="1242" src="res/screen/ios/Default-736h-Landscape~iphone.png" width="2208" />
     </platform>
     <mfp:android>
-        <mfp:sdkChecksum>2763016686</mfp:sdkChecksum>
+        <mfp:sdkChecksum>1873364475</mfp:sdkChecksum>
         <mfp:appChecksum>0</mfp:appChecksum>
         <mfp:security>
             <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
@@ -80,7 +80,7 @@
         <mfp:publicSigningKey />
     </mfp:android>
     <mfp:ios>
-        <mfp:sdkChecksum>1893756982</mfp:sdkChecksum>
+        <mfp:sdkChecksum>1739856786</mfp:sdkChecksum>
         <mfp:appChecksum>0</mfp:appChecksum>
         <mfp:security>
             <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
@@ -110,9 +110,12 @@
         </mfp:windows10>
         <mfp:appChecksum>0</mfp:appChecksum>
     </mfp:windows>
-    <mfp:platformVersion>8.0.0.00-20160530-1634</mfp:platformVersion>
+    <mfp:platformVersion>8.0.0.00-20190521-121303</mfp:platformVersion>
     <mfp:clientCustomInit enabled="false" />
-    <mfp:server runtime="mfp" url="http://localhost:9080" />
+    <mfp:server runtime="mfp" url="http://172.20.10.3:9080" />
     <mfp:directUpdateAuthenticityPublicKey />
     <mfp:languagePreferences>en</mfp:languagePreferences>
+    <plugin name="cordova-plugin-mfp" spec="^8.0.2019052114" />
+    <engine name="ios" spec="^4.5.5" />
+    <engine name="android" spec="^7.1.4" />
 </widget>

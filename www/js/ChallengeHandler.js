@@ -17,6 +17,8 @@ var PinCodeChallengeHandler = function(){
   PinCodeChallengeHandler = WL.Client.createSecurityCheckChallengeHandler("PinCodeAttempts");
 
   PinCodeChallengeHandler.handleChallenge = function(challenge) {
+      console.log('handleChallenge~~');
+      console.log("handleChallenge : " + JSON.stringify(challenge));
       var msg = "";
 
       // Create the title string for the prompt
@@ -40,6 +42,12 @@ var PinCodeChallengeHandler = function(){
 
   };
 
+  // handleSuccess
+  PinCodeChallengeHandler.handleSuccess = function(response) {
+    console.log('handleSuccess~~');
+    console.log(response);
+  };
+
   // handleFailure
   PinCodeChallengeHandler.handleFailure = function(error) {
       WL.Logger.debug("Challenge Handler Failure!");
@@ -50,4 +58,52 @@ var PinCodeChallengeHandler = function(){
          alert("Unknown error");
       }
   };
+};
+// PinCodeChallengeHandler();
+
+var connectMobileFirstServer = function() {
+    console.log("connectMobileFirstServer");
+
+    function logoutMobileFirstServer() {
+        WLAuthorizationManager.logout('PinCodeAttempts').then(
+            function (response) {
+                console.log('WL logout success');
+                console.log(response);
+                WL.App.sendActionToNative("MFReady");
+            },
+            function (response) {
+                console.log('WL logout fail');
+                console.log(response);
+                WL.App.sendActionToNative("MFReady");
+            }
+        );
+    }
+
+    function obtainMobileFirstServerAccessToken() {
+		// 連接至MobileFirst Server API，僅在Mobile Client上才能連結
+		WLAuthorizationManager.obtainAccessToken()
+			.then(
+				function (response) {
+					connectSuccess(response);
+				},
+				function (response) {
+					connectFail(response);
+				}
+			);
+    }
+
+    function connectSuccess(response) {
+		console.log("Obtained token successfully.");
+		PinCodeChallengeHandler();
+        logoutMobileFirstServer();
+    }
+
+    function connectFail(response) {
+        console.log("*** Failed obtaining token.");
+        setTimeout(function () {
+            obtainMobileFirstServerAccessToken();
+        }, 3000);
+    }
+
+    obtainMobileFirstServerAccessToken();
 };

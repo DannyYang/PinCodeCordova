@@ -27,7 +27,7 @@ function wlCommonInit(){
 }
 
 function getBalance() {
-    var resourceRequest = new WLResourceRequest("/adapters/ResourceAdapter/balance",WLResourceRequest.GET);
+    var resourceRequest = new WLResourceRequest("/adapters/JSResourceAdapter/getBalance",WLResourceRequest.POST);
 
     resourceRequest.send().then(
         function(response) {
